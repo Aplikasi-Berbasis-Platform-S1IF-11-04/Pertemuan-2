@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Rafiful Hana · Tugas Neurobrutal</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Space Mono', 'Courier New', 'Fira Code', monospace;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    background-color: #0a0c0f;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('telkom.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(30%) contrast(120%) brightness(0.45);
+    z-index: -2;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, rgba(220, 38, 38, 0.12) 0px, rgba(220, 38, 38, 0.12) 2px, transparent 2px, transparent 12px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .brutal-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .main-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .brutal-card {
+    background: #ffffff;
+    border: 4px solid #000000;
+    box-shadow: 18px 18px 0 #dc2626;
+    transition: all 0.18s ease;
+  }
+
+  .brutal-card:hover {
+    box-shadow: 10px 10px 0 #b91c1c;
+    transform: translate(4px, 4px);
+  }
+
+  .hero-zone {
+    background: #000000;
+    padding: 2rem 2.2rem;
+    border-bottom: 5px solid #dc2626;
+    position: relative;
+  }
+
+  .hero-zone h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .hero-zone h1 strong {
+    color: #dc2626;
+    border-left: 5px solid #dc2626;
+    padding-left: 0.8rem;
+    margin-left: 0.3rem;
+    display: inline-block;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+    color: #facc15;
+    margin-top: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 0.8rem;
+    display: inline-block;
+  }
+
+  .badge-strip {
+    background: #fef9e3;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-bottom: 2px solid #000;
+    font-weight: 700;
+  }
+
+  .badge-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+
+  .badge-tag {
+    background: #000;
+    color: white;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .badge-text {
+    font-weight: 800;
+    color: #1f1f1f;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+
+  .form-panel {
+    padding: 2.5rem 2.2rem;
+    background: #fdfdfb;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .field-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    border-left: 3px solid #dc2626;
+    padding-left: 1rem;
+  }
+
+  .field-label {
+    width: 170px;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+    background: #e9e8e2;
+    padding: 0.5rem 0.6rem;
+    border-right: 2px solid #000;
+  }
+
+  .field-control {
+    flex: 1;
+    min-width: 210px;
+  }
+
+  input, select, textarea {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    border: 2.5px solid #111;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.1s linear;
+    outline: none;
+    color: #0a0a0a;
+    border-radius: 0px;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #dc2626;
+    box-shadow: 4px 4px 0 #00000030;
+    background: #fffef7;
+  }
+
+  input[readonly] {
+    background: #ecebe4;
+    border-color: #5a5a5a;
+    color: #1e1e1e;
+    font-weight: 600;
+  }
+
+  .radio-cluster, .check-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .radio-cluster label, .check-cluster label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    background: #f4f3ef;
+    padding: 0.4rem 1rem 0.4rem 0.8rem;
+    border: 1.5px solid #0a0a0a;
+    font-size: 0.85rem;
+    text-transform: none;
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #dc2626;
+    margin: 0;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    border: 2.5px solid #000;
+    background: white;
+    cursor: pointer;
+    transition: all 0.12s linear;
+    letter-spacing: 1.2px;
+  }
+
+  .btn-primary {
+    background: #000;
+    color: white;
+    border: 2.5px solid #000;
+  }
+
+  .btn-primary:hover {
+    background: #dc2626;
+    border-color: #000;
+    transform: scale(0.96);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: #facc15;
+    transform: scale(0.96);
+    border-color: #000;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  select {
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 15px;
+    appearance: none;
+  }
+
+  @media (max-width: 780px) {
+    body {
+      padding: 1rem;
+    }
+    .field-group {
+      flex-direction: column;
+    }
+    .field-label {
+      width: 100%;
+    }
+    .hero-zone h1 {
+      font-size: 1.8rem;
+    }
+    .badge-strip {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .action-buttons {
+      justify-content: center;
+    }
+    .brutal-card {
+      box-shadow: 8px 8px 0 #dc2626;
+    }
+  }
+
+  hr {
+    display: none;
+  }
+
+  .signature-note {
+    background: #000000e0;
+    margin-top: 1.5rem;
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #facc15;
+    letter-spacing: 1px;
+    border-top: 3px solid #dc2626;
+  }
+</style>
+</head>
+<body>
+<div class="brutal-noise"></div>
+<div class="main-container">
+  <div class="brutal-card">
+    <div class="hero-zone">
+      <h1><strong>TELKOM UNIVERSITY</strong><br>INFORMATICS ENGINEERING</h1>
+      <div class="hero-sub">#Tugas Minggu 3 ·</div>
+    </div>
+    <div class="badge-strip">
+      <div class="badge-item"><span class="badge-tag">NAMA</span><span class="badge-text">Muhammad Rafiful Hana</span></div>
+      <div class="badge-item"><span class="badge-tag">NIM</span><span class="badge-text">2311102227</span></div>
+      <div class="badge-item"><span class="badge-tag">FAKULTAS</span><span class="badge-text">Teknik Informatika · Tel-U</span></div>
+    </div>
+    <div class="form-panel">
+      <form action="#" method="POST">
+        <div class="field-group">
+          <div class="field-label"><label for="nama_id">NAMA LENGKAP</label></div>
+          <div class="field-control"><input type="text" name="nama_input" id="nama_id" placeholder="Nama sesuai KTM" value="Muhammad Rafiful Hana" readonly></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="nim_id">NIM</label></div>
+          <div class="field-control"><input type="text" name="nim_input" id="nim_id" placeholder="Nomor Induk Mahasiswa" value="2311102227" readonly></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="uname_id">USERNAME SISTEM</label></div>
+          <div class="field-control"><input type="text" name="uname_input" id="uname_id" placeholder="contoh: rafiful_hana" autocomplete="off"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="password_id">PASSWORD</label></div>
+          <div class="field-control"><input type="password" name="password_input" id="password_id" placeholder="min 8 karakter · kombinasi"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="email_id">EMAIL TEL-U</label></div>
+          <div class="field-control"><input type="email" name="email_input" id="email_id" placeholder="rafiful@student.telkomuniversity.ac.id"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">JENIS KELAMIN</div>
+          <div class="field-control">
+            <div class="radio-cluster">
+              <label><input type="radio" name="jk_input" value="Laki-laki"> LAKI-LAKI</label>
+              <label><input type="radio" name="jk_input" value="Perempuan"> PEREMPUAN</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">KETERTARIKAN</div>
+          <div class="field-control">
+            <div class="check-cluster">
+              <label><input type="checkbox" name="hobi_input" value="Cyber Security"> Cyber Security</label>
+              <label><input type="checkbox" name="hobi_input" value="Web Brutalist"> Web Brutalist</label>
+              <label><input type="checkbox" name="hobi_input" value="AI Engineering"> AI Engineering</label>
+              <label><input type="checkbox" name="hobi_input" value="GameDev"> GameDev</label>
+              <label><input type="checkbox" name="hobi_input" value="UI/UX Radical"> UI/UX Radical</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="jp_id">JENJANG PENDIDIKAN</label></div>
+          <div class="field-control">
+            <select name="jp_input" id="jp_id">
+              <option value="" selected>── PILIH JENJANG ──</option>
+              <option value="D3">D3 Teknik Informatika</option>
+              <option value="S1">S1 Informatika (Reguler)</option>
+              <option value="S2">S2 Informatika</option>
+              <option value="S3">S3 Ilmu Komputer</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label"><label for="kritik_saran">KRITIK & SARAN</label></div>
+          <div class="field-control"><textarea id="kritik_saran" name="kritik_saran" rows="4" placeholder="Tulis pesan untuk asisten praktikum / saran sistem..."></textarea></div>
+        </div>
+
+        <div class="action-buttons">
+          <input type="button" value="BATAL" class="btn btn-secondary">
+          <input type="submit" value="SUBMIT FORM" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="signature-note">
+    TELKOM UNIVERSITY | NEUROBRUTALISM — TUGAS MINGGU 3.1 : MUHAMMAD RAFIFUL HANA (2311102227)
+  </div>
+</div>
+</body>
+</html>

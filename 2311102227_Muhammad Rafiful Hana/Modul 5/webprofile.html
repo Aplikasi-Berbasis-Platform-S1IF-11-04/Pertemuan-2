@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>M Rafiful Hana · Profile | Kudus</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Courier New', 'Space Mono', 'Fira Code', 'IBM Plex Mono', monospace;
+    background-color: #0b0b0b;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .bg-kudus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('kudus.jpg') center center / cover no-repeat fixed;
+    filter: grayscale(0.25) contrast(1.15) brightness(0.4) saturate(1.1);
+    z-index: -2;
+  }
+
+  .noise-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(220, 38, 38, 0.12) 0px, rgba(220, 38, 38, 0.12) 3px, transparent 3px, transparent 12px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .diagonal-split {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(115deg, #00000022 0px, #00000022 2px, transparent 2px, transparent 20px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .neuro-container {
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-block {
+    background: #0a0a0a;
+    border-left: 10px solid #dc2626;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 10px 10px 0 #e11d48;
+  }
+
+  .hero-block h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.1;
+    word-break: break-word;
+  }
+
+  .hero-block .tagline {
+    color: #facc15;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-top: 0.7rem;
+    border-top: 2px solid #dc2626;
+    display: inline-block;
+    padding-top: 0.6rem;
+  }
+
+  .badge-cluster {
+    background: #1e1e1e;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-bottom: 3px solid #dc2626;
+    margin-bottom: 0;
+  }
+
+  .badge-cluster-item {
+    background: #000;
+    padding: 0.3rem 0.9rem;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-right: 3px solid #dc2626;
+  }
+
+  .badge-cluster-value {
+    font-weight: 800;
+    color: #facc15;
+    background: transparent;
+    margin-left: 0.5rem;
+  }
+
+  .profile-layout {
+    background: #fefaf0;
+    padding: 2rem;
+    border: 3px solid #000;
+    box-shadow: 14px 14px 0 #b91c1c;
+  }
+
+  .left-radical {
+    background: #ffffff;
+    border-right: 5px solid #dc2626;
+    padding: 1.2rem;
+    height: 100%;
+  }
+
+  .right-brutal {
+    background: #f6f3e8;
+    padding: 1.2rem;
+    border-left: 3px solid #000;
+    height: 100%;
+  }
+
+  .bio-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    border-bottom: 2px dotted #aaa;
+    padding: 0.8rem 0;
+    gap: 0.5rem;
+  }
+
+  .bio-label {
+    background: #0a0a0a;
+    color: white;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  .bio-value {
+    font-weight: 700;
+    color: #2d2a24;
+    font-size: 0.9rem;
+    font-family: monospace;
+  }
+
+  .hobby-brut {
+    background: #ffffff;
+    border-left: 8px solid #dc2626;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    transition: 0.08s linear;
+    box-shadow: 3px 3px 0 #00000020;
+  }
+
+  .hobby-brut i {
+    color: #dc2626;
+    font-size: 1.3rem;
+    margin-right: 10px;
+  }
+
+  .btn-neuro-outline {
+    background: #000000;
+    border: 2px solid #000;
+    padding: 12px 32px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    transition: all 0.1s ease;
+    width: 100%;
+    font-family: monospace;
+  }
+
+  .btn-neuro-outline:hover {
+    background: #dc2626;
+    color: #000;
+    transform: scale(0.97);
+    border-color: #000;
+  }
+
+  .quote-area {
+    background: #000000;
+    padding: 1.2rem;
+    color: #facc15;
+    font-weight: 600;
+    border-top: 4px solid #dc2626;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .footer-distinct {
+    background: #0f0f0f;
+    padding: 1rem;
+    text-align: center;
+    border-top: 5px solid #dc2626;
+    margin-top: 2rem;
+    color: #bbb;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-block h1 {
+      font-size: 2rem;
+    }
+    .profile-layout {
+      padding: 1rem;
+    }
+    .left-radical, .right-brutal {
+      border: none;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="bg-kudus"></div>
+<div class="noise-layer"></div>
+<div class="diagonal-split"></div>
+
+<div class="container neuro-container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="hero-block">
+        <h1>MUHAMMAD RAFIFUL HANA<br>PROFILE//KUDUS</h1>
+        <div class="tagline"><i class="bi bi-pin-map-fill me-1"></i> KOTA KRETEK · MENARA ISLAM</div>
+      </div>
+      
+      <div class="badge-cluster">
+        <div><span class="badge-cluster-item">IDENTITAS</span><span class="badge-cluster-value">Muhammad Rafiful Hana</span></div>
+        <div><span class="badge-cluster-item">NIM</span><span class="badge-cluster-value">2311102227</span></div>
+        <div><span class="badge-cluster-item">FAKULTAS</span><span class="badge-cluster-value">Teknik Informatika · Tel-U</span></div>
+        <div><span class="badge-cluster-item">ASAL</span><span class="badge-cluster-value">Kudus · Jawa Tengah</span></div>
+      </div>
+
+      <div class="profile-layout mt-4">
+        <div class="row g-4">
+          <div class="col-md-5">
+            <div class="left-radical">
+              <h4 class="fw-bold mb-3" style="border-bottom: 4px solid #dc2626; display: inline-block;">BIODATA</h4>
+              <div class="bio-item">
+                <span class="bio-label">NAMA LENGKAP</span>
+                <span class="bio-value">Muhammad Rafiful Hana</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">NIM</span>
+                <span class="bio-value">2311102227</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">FAKULTAS</span>
+                <span class="bio-value">Teknik Informatika</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">UNIVERSITAS</span>
+                <span class="bio-value">Telkom University</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">TEMPAT LAHIR</span>
+                <span class="bio-value">Kudus, 15 Oktober 2003</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">JENIS KELAMIN</span>
+                <span class="bio-value">Laki-laki</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">EMAIL</span>
+                <span class="bio-value">rafifulhan@student.telkomuniversity.ac.id</span>
+              </div>
+              <div class="bio-item">
+                <span class="bio-label">KONTAK</span>
+                <span class="bio-value">+62 812 3456 7890</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="right-brutal">
+              <h4 class="fw-bold mb-3" style="border-left: 6px solid #dc2626; padding-left: 12px;">PROFIL SINGKAT</h4>
+              <p class="mb-3" style="background:#fff; padding:12px; border:1px solid #000;">Mahasiswa Teknik Informatika angkatan 2023 dengan semangat eksperimental pada web brutalist & arsitektur visual. Berasal dari <strong>Kota Kudus</strong> — kota dengan perpaduan tradisi Menara Kudus dan semangat industri kretek. Fokus pada pengembangan frontend radikal, UI/UX berani, serta eksplorasi teknologi mutakhir.</p>
+              
+              <div class="mt-3">
+                <h5 class="fw-bold" style="font-size:0.9rem; text-transform:uppercase;"><i class="bi bi-asterisk me-1"></i> KETERTARIKAN / HOBI</h5>
+                <div class="hobby-brut">
+                  <i class="bi bi-code-square"></i> Competitive Programming & Problem Solving
+                </div>
+                <div class="hobby-brut">
+                  <i class="bi bi-bezier2"></i> Desain Neurobrutalist & Tipografi Eksperimental
+                </div>
+                <div class="hobby-brut">
+                  <i class="bi bi-camera"></i> Fotografi Arsitektur Kota Tua Kudus
+                </div>
+                <div class="hobby-brut">
+                  <i class="bi bi-controller"></i> Game Development (Godot / Unity)
+                </div>
+                <div class="hobby-brut">
+                  <i class="bi bi-binoculars"></i> Eksplorasi budaya lokal & heritage
+                </div>
+              </div>
+
+              <div class="row mt-3 g-2">
+                <div class="col-6">
+                  <div class="bg-dark text-white p-2 text-center" style="border-left:3px solid #facc15;">AKTIVIS<br>Asisten Lab Web Design</div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-dark text-white p-2 text-center" style="border-left:3px solid #facc15;">PROYEK<br>Brutalist UI Components</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-area mt-4">
+          <i class="bi bi-quote me-2"></i> “Kudus mengajarkan saya tentang kontras — antara sejarah dan modernitas, seperti neurobrutalism yang merayakan ketidaksempurnaan.”
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn-neuro-outline" id="radicalButton">
+            <i class="bi bi-lightning-charge-fill me-2"></i> EKSPLOR BIODATA KUDUS
+          </button>
+          <div id="feedbackZone" class="mt-3 text-center" style="font-weight: bold; min-height: 55px;"></div>
+        </div>
+      </div>
+      <div class="footer-distinct">
+        <i class="bi bi-geo-alt-fill me-2"></i> KUDUS · MENARA KUDUS | MUHAMMAD RAFIFUL HANA (2311102227)
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var targetBtn = document.getElementById('radicalButton');
+    var feedDiv = document.getElementById('feedbackZone');
+    if(targetBtn && feedDiv) {
+      targetBtn.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        feedDiv.innerHTML = '<span style="background:#000; color:#facc15; padding:8px 20px; border-left:6px solid #dc2626; font-family:monospace;"><i class="bi bi-check2-circle"></i> NAMA: Muhammad Rafiful Hana | NIM: 2311102227 | FAKULTAS: Teknik Informatika | KUDUS.JPG</span>';
+        setTimeout(function() {
+          feedDiv.innerHTML = '';
+        }, 3000);
+      });
+    }
+  })();
+</script>
+</body>
+</html>
