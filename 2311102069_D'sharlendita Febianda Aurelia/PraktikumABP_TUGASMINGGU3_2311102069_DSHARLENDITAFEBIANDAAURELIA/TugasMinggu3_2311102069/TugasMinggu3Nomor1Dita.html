@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulir Pendaftaran Praktikan</title>
+        <style>
+        body{
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+        }
+        .form-box{
+            width: 500px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            margin-top: 40px;
+            border-radius: 10px;
+            border: 1px solid gray;
+        }
+        h2{
+            text-align: center;
+        }
+        input, textarea, select{
+            padding: 5px;
+        }
+        .button-right{
+            text-align: right;
+        }
+        button{
+            padding: 6px 12px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="form-box">
+            <h2>Formulir Pendaftaran Praktikan</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td><input type="text" value="D'sharlendita Febianda Aurelia"></td>
+                    </tr>
+                    <tr>
+                        <td>NIM</td>
+                        <td>:</td>
+                        <td><input type="text" value="2311102069"></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td>:</td>
+                        <td><input type="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><input type="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>:</td>
+                        <td>
+                            <input type="radio" name="jk"> Pria
+                            <input type="radio" name="jk"> Wanita
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hobi</td>
+                        <td>:</td>
+                        <td>
+                            <input type="checkbox"> Renang <br>
+                            <input type="checkbox"> Bersepeda <br>
+                            <input type="checkbox"> Memancing
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jenjang Pendidikan</td>
+                        <td>:</td>
+                        <td>
+                            <select>
+                                <option>--Pilih--</option>
+                                <option>D3</option>
+                                <option>S1</option>
+                                <option>S2</option>
+                                <option>S3</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kritik & Saran</td>
+                        <td>:</td>
+                        <td><textarea rows="4" cols="30"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="button-right">
+                            <button type="reset">Cancel</button>
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
