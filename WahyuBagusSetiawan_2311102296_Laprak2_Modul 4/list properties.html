@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Implementasi CSS List</title>
+  <style>
+    .item-indoor {
+      background-color: #ff4500; 
+      margin: 12px 8px;
+      list-style-type: square;
+      list-style-position: inside;
+      border-radius: 4px; 
+    }
+    .item-detail {
+      background-color: #add8e6; 
+      list-style-type: lower-roman;
+      padding: 10px 10px 20px 20px;
+      list-style-position: inside;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <h3>Daftar Inventaris Properti</h3>
+  <ol>
+    <li>Area Indoor
+      <ul class="item-indoor">
+        <li>Sofa Minimalis</li>
+      </ul>
+      <ol class="item-detail">
+        <li>Tanaman Hias</li>
+      </ol>
+    </li>
+  </ol>
+</body>
+</html>
